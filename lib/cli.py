@@ -567,7 +567,7 @@ class ExtractArgs(ExtractConvertArgs):
             "action": Radio,
             "type": str.lower,
             "choices": PluginLoader.get_available_extractors("mask", add_none=True),
-            "default": "extended",
+            "default": "vgg-obstructed",
             "group": "Plugins",
             "help": "R|Masker to use. NB: Masker is not currently used by the rest of the process "
                     "but this will store a mask in the alignments file for use when it has been "
@@ -596,7 +596,7 @@ class ExtractArgs(ExtractConvertArgs):
             "type": str.lower,
             "dest": "normalization",
             "choices": ["none", "clahe", "hist", "mean"],
-            "default": "none",
+            "default": "hist",
             "group": "plugins",
             "help": "R|Performing normalization can help the aligner better align faces with "
                     "difficult lighting conditions at an extraction speed cost. Different methods "
@@ -1053,7 +1053,7 @@ class TrainArgs(FaceSwapArgs):
                               "type": str.lower,
                               "choices": PluginLoader.get_available_models(),
                               "default": PluginLoader.get_default_model(),
-                              "group": "model",
+                              "group": "dfl-h128",
                               "help": "R|Select which trainer to use. Trainers can be"
                                       "configured from the Settings menu or the config folder."
                                       "\nL|original: The original model created by /u/deepfakes."
@@ -1236,7 +1236,7 @@ class TrainArgs(FaceSwapArgs):
                               "action": "store_true",
                               "dest": "warp_to_landmarks",
                               "group": "training",
-                              "default": False,
+                              "default": True,
                               "help": "Warps training faces to closely matched Landmarks from the "
                                       "opposite face-set rather than randomly warping the face. "
                                       "This is the 'dfaker' way of doing warping. Alignments "

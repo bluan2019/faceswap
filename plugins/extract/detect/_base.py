@@ -110,6 +110,7 @@ class Detector(Extractor):  # pylint:disable=abstract-method
         batch = dict()
         for _ in range(self.batchsize):
             item = self._get_item(queue)
+           
             if item == "EOF":
                 exhausted = True
                 break
